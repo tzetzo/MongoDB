@@ -12,17 +12,24 @@ describe("Deleting records", () => {
   it("model instance remove", done => {
     user
       .remove()
-      .then(() => {
-        return User.findOne({ name: "Josephine" });
-      })
+      .then(() => User.findOne({ name: "Josephine" }))
       .then(usr => {
-        assert(!usr);
+        assert(usr === null);
         done();
       });
   });
 
-  // it("class method remove", done => {});
-  //
+  it("class method deleteMany", done => {
+    //removes many users
+    User
+      .deleteMany({name: "Josephine"})
+      .then(() => User.findOne({ name: "Josephine" }))
+      .then(usr => {
+        assert(usr === null);
+        done();
+      });
+  });
+
   // it("class method findAndRemove", done => {});
   //
   // it("class method findByIdAndRemove", done => {});
