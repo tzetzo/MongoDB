@@ -9,9 +9,9 @@ describe("Deleting records", () => {
     user.save().then(() => done());
   });
 
-  it("model instance remove", done => {
+  it("model instance deleteOne", done => {
     user
-      .remove()
+      .deleteOne()
       .then(() => User.findOne({ name: "Josephine" }))
       .then(usr => {
         assert(usr === null);
