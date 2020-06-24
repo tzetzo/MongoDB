@@ -20,9 +20,8 @@ describe("Deleting records", () => {
   });
 
   it("class method deleteMany", done => {
-    //removes many users
-    User
-      .deleteMany({name: "Josephine"})
+    //deletes many users
+    User.deleteMany({ name: "Josephine" })
       .then(() => User.findOne({ name: "Josephine" }))
       .then(usr => {
         assert(usr === null);
@@ -30,7 +29,21 @@ describe("Deleting records", () => {
       });
   });
 
-  // it("class method findAndRemove", done => {});
-  //
-  // it("class method findByIdAndRemove", done => {});
+  it("class method findOneAndDelete", done => {
+    User.findOneAndDelete({ name: "Josephine" })
+      .then(() => User.findOne({ name: "Josephine" }))
+      .then(usr => {
+        assert(usr === null);
+        done();
+      });
+  });
+
+  it("class method findByIdAndDelete", done => {
+    User.findByIdAndDelete(user._id)
+      .then(() => User.findOne({ name: "Josephine" }))
+      .then(usr => {
+        assert(usr === null);
+        done();
+      });
+  });
 });
