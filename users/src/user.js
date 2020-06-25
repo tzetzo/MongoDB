@@ -11,8 +11,13 @@ const UserSchema = new Schema({
     },
     required: [true, "Name is required."]
   },
-  postCount: Number,
   posts: [PostSchema]
+});
+
+// define virtual field; user.postCount will run the function
+UserSchema.virtual("postCount").get(function() {
+  // "this" returns the document instance i.e. {name: 'Tzetzo', posts: []}
+  return this.posts.length;
 });
 
 // User represents the entire collection

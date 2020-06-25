@@ -40,7 +40,7 @@ describe("Updating records", () => {
     assertName(User.findByIdAndUpdate(user._id, { name: "Alex" }), done);
   });
 
-  it("should increment by 1 a field value of multiple documents", done => {
+  xit("should increment by 1 a field value of multiple documents", done => {
     User.updateMany({ name: "John" }, { $inc: { postCount: 3 } })   //Update Operator --> https://docs.mongodb.com/manual/reference/operator/update/
       .then(() => User.find({ name: "John" }))
       .then(users => {
