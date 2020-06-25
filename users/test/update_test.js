@@ -5,7 +5,7 @@ describe("Updating records", () => {
   let user;
 
   beforeEach(done => {
-    user = new User({ name: "John" }); //mongoose creates the _id of the document here
+    user = new User({ name: "John", postCount: 0 }); //mongoose creates the _id of the document here
     user.save().then(() => done());
   });
 
@@ -38,5 +38,14 @@ describe("Updating records", () => {
 
   it("A model class can find a record with an Id and update", done => {
     assertName(User.findByIdAndUpdate(user._id, { name: "Alex" }), done);
+  });
+
+  it("should increment by 1 a field value of multiple documents", done => {
+    User.updateMany({ name: "John" }, { $inc: { postCount: 3 } })   //Update Operator --> https://docs.mongodb.com/manual/reference/operator/update/
+      .then(() => User.find({ name: "John" }))
+      .then(users => {
+        assert(users[0].postCount === 3);
+        done();
+      });
   });
 });
