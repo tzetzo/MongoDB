@@ -5,7 +5,7 @@ const CommentSchema = new Schema({
   content: String,
   user: {
     type: Schema.Types.ObjectId, //the IDs this array will contain will refer to the user model
-    ref: "user" //should match the model definition for user -> see user.js
+    ref: "user" //should match the model definition for user -> see user.js; associates the comment with the user model
   }
 });
 

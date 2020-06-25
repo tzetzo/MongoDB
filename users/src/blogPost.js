@@ -7,7 +7,7 @@ const BlogPostSchema = new Schema({
   comments: [
     {
       type: Schema.Types.ObjectId, //the IDs this array will contain will refer to the comment model
-      ref: "comment" //should match the model definition for comment -> see comment.js
+      ref: "comment" //should match the model definition for comment -> see comment.js;  associates the comment with the comment model
     }
   ]
 });

@@ -12,7 +12,13 @@ const UserSchema = new Schema({
     required: [true, "Name is required."]
   },
   posts: [PostSchema],
-  likes: Number
+  likes: Number,
+  blogPosts: [
+    {
+      type: Schema.Types.ObjectId, //the IDs this array will contain will refer to the blogPost model
+      ref: "blogPost" //should match the model definition for blogPost -> see blogPost.js;  associates the blogPost with the blogPost model
+    }
+  ]
 });
 
 // define virtual field; user.postCount will run the function
