@@ -2,7 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: { type: String, required: [true, "Name is required."] }, //String is JS global object
+  name: {
+    type: String, //String is JS global object
+    validate: {
+      validator: name => name.length > 2,
+      message: "Name must be longer than 2 characters."
+    },
+    required: [true, "Name is required."]
+  },
   postCount: Number
 });
 
